@@ -16,4 +16,14 @@ public class Ponto {
     private String matricula;
     private String email;
     private final Date data = new Date();
+
+    public String toJsonStr() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{'id': '"+this.id+"', ");
+        sb.append("'usuario': '"+this.usuario+"', ");
+        sb.append("'matricula': '"+this.matricula+"', ");
+        sb.append("'email': '"+this.email+"', ");
+        sb.append("'data': '"+this.data+"'} ");
+        return sb.toString();
+    }
 }

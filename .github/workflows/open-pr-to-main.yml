@@ -1,0 +1,40 @@
+name: Create PR to branch main on Push to Feature Branch
+
+on:
+  push:
+    branches:
+      - feature/*
+
+jobs:
+  create_pr:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Get Branch Name
+      id: branch
+      run: | 
+        BRANCH_NAME=${GITHUB_REF#refs/heads/}
+        echo "::set-output name=branch::${BRANCH_NAME}"
+      shell: bash
+
+    - name: Show Branch Name
+      run: echo "Current branch name is ${{ steps.branch.outputs.branch }}"
+ 
+    - name: Create PR
+      run: |
+        GITHUB_TOKEN=${{ secrets.CI_CD }}
+        BASE_BRANCH=main  # Branch de destino
+        HEAD_BRANCH=${{ steps.branch.outputs.branch }}   # Branch de origem
+        PR_TITLE="Auto-generated PR"
+        PR_BODY="This PR was automatically created from a feature branch."
+        API_URL="https://api.github.com/repos/$GITHUB_REPOSITORY/pulls"
+
+        RESPONSE=$(curl -X POST -s -H "Authorization: token $GITHUB_TOKEN" -d "{\"title\":\"$PR_TITLE\",\"body\":\"$PR_BODY\",\"base\":\"$BASE_BRANCH\",\"head\":\"$HEAD_BRANCH\"}" $API_URL)
+
+        echo "PR URL: $(echo $RESPONSE | jq -r .html_url)"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      shell: bash

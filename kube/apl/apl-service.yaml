@@ -1,0 +1,15 @@
+# Create a service
+kind: Service
+apiVersion: v1
+metadata:
+  name: fiap-registro
+  annotations:
+    eks.amazonaws.com/role-arn: "arn:aws:iam::231670762225:role/eks-eks-nodes"
+spec:
+  selector:
+    app: fiap-registro
+  ports:
+    - name: fiap-registro
+      targetPort: 9092
+      port: 9092
+  type: LoadBalancer

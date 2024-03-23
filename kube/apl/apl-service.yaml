@@ -1,0 +1,16 @@
+# Create a service
+kind: Service
+apiVersion: v1
+metadata:
+  name: fiap-registro
+  annotations:
+    eks.amazonaws.com/role-arn: "arn:aws:iam::231670762225:role/eks-eks-nodes"
+spec:
+  selector:
+    app: fiap-registro
+  ports:
+    - name: http
+      port: 443
+      protocol: TCP
+      targetPort: 9092
+  type: NodePort

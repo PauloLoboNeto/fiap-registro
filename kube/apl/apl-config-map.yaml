@@ -1,0 +1,20 @@
+# Create a configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fiap-registro-config
+  labels:
+    app: fiap-registro
+data:
+  spring_application_name: 'registro'
+  server_servlet_context_path: '/hackathon'
+  jwt_expiration: '10'
+  jwt_secret: 'fiap@hackathon'
+  server_port: '9092'
+  spring_jpa_properties_hibernate_dialect: org.hibernate.dialect.PostgreSQLDialect
+  spring_datasource_initialization-mode: always
+  spring_datasource_initialize: 'true'
+  spring_jpa_hibernate_show-sql: 'true'
+  spring_jpa_hibernate_ddl-auto: update
+
+

@@ -16,5 +16,6 @@ data:
   spring_datasource_initialize: 'true'
   spring_jpa_hibernate_show-sql: 'true'
   spring_jpa_hibernate_ddl-auto: update
+  queue: 'registro_ponto'
 
 

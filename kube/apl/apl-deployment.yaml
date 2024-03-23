@@ -70,6 +70,12 @@ spec:
                 configMapKeyRef:
                   name: fiap-registro-config
                   key: jwt_secret
+            - name: queue.atualiza.registro.ponto
+              valueFrom:
+                configMapKeyRef:
+                  name: fiap-registro-config
+                  key: queue
+
           ports:
             - containerPort: 9092
 

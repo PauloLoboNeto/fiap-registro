@@ -18,7 +18,7 @@ public class Ponto {
     private String matricula;
     private String email;
     @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
-    private final Date data = new Date();
+    private Date data;
 
     public String toJsonStr() {
         StringBuilder sb = new StringBuilder();

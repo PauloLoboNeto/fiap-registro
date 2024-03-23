@@ -31,6 +31,7 @@ public class PontoEntity {
     public Ponto to(PontoEntity ponto) {
         return Ponto.builder()
                 .id(ponto.getId())
+                .data(ponto.getData() )
                 .usuario(ponto.getUsuario())
                 .matricula(ponto.getMatricula())
                 .email(ponto.getEmail())

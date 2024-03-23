@@ -9,7 +9,8 @@ spec:
   selector:
     app: fiap-registro
   ports:
-    - name: fiap-registro
+    - name: http
+      port: 443
+      protocol: TCP
       targetPort: 9092
-      port: 9092
-  type: LoadBalancer
+  type: NodePort

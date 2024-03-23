@@ -36,9 +36,7 @@ public class ListenerOfSecrets implements ApplicationListener<ApplicationPrepare
 
         String dbPassword = getString(secretJson, "password");
         String dbUsername = getString(secretJson, "username");
-        String dbHost = getString(secretJson, "host");
-        String dbPort = getString(secretJson, "port");
-        String dbName = getString(secretJson, "dbname");
+        String datasourceurl = getString(secretJson, "datasourceurl");
 
         String jwtSecret = getString(secretJson, "jwtSecret");
 
@@ -47,13 +45,7 @@ public class ListenerOfSecrets implements ApplicationListener<ApplicationPrepare
         props.put(JWT_SECRET, jwtSecret);
         props.put(SPRING_DATASOURCE_PASSWORD, dbPassword);
         props.put(SPRING_DATASOURCE_USERNAME, dbUsername);
-        props.put(SPRING_DATASOURCE_URL, "jdbc:postgresql://"
-                + dbHost
-                + ":"
-                + dbPort
-                + "/"
-                + dbName
-                + "?ssl=true&sslmode=require&rejectUnauthorized=false");
+        props.put(SPRING_DATASOURCE_URL, datasourceurl);
         environment.getPropertySources().addFirst(new PropertiesPropertySource("aws.secret.manager", props));
     }
     public String getSecret() {

@@ -65,7 +65,11 @@ spec:
                 configMapKeyRef:
                   name: fiap-registro-config
                   key: spring_jpa_hibernate_ddl-auto
-
+            - name: jwt.secret
+              valueFrom:
+                configMapKeyRef:
+                  name: fiap-registro-config
+                  key: jwt_secret
           ports:
             - containerPort: 9092
 
